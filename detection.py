@@ -4,6 +4,7 @@ import numpy as np
 
 class vehicle_detection:
     def detect(self, col_images, video_no, veh_no):
+        print('extracting cars from ', video_no)
         frame_array_for_video = []
 
         for j in range(0, len(col_images)-1):
@@ -11,7 +12,7 @@ class vehicle_detection:
 
             # convert the frames to grayscale
             grayA = cv2.cvtColor(col_images[framei], cv2.COLOR_BGR2GRAY)
-            grayB = cv2.cvtColor(col_images[framei+1], cv2.COLOR_BGR2GRAY)
+            grayB = cv2.cvtColor(col_images[framei + 1], cv2.COLOR_BGR2GRAY)
             diff_image = cv2.absdiff(grayB, grayA)
 
             # plot the image after frame differencing
@@ -39,7 +40,7 @@ class vehicle_detection:
 
             # find initial contours: gives multiple contours for one car
             contours, hierarchy = cv2.findContours(
-                thresh.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)
+                dilated.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)
 
             valid_cntrs = []
             for i, cntr in enumerate(contours):
@@ -66,7 +67,7 @@ class vehicle_detection:
             # conv to grayscale
 
             # count of discovered contours
-            print('len of valid contours', len(sorted_contours))
+            # print('len of valid contours', len(sorted_contours))
 
             img_float32 = np.float32(img_merged_rect)
             grey = img_float32.astype(np.uint8)

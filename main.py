@@ -6,7 +6,7 @@ from classification import vehicle_classification
 
 col_images = []
 
-for v in range(1, 4):
+for v in range(1, 3):
     video_frames = []
 
     # convert video into frame format
@@ -25,7 +25,7 @@ for v in range(1, 4):
             break
 
     col_images.append(video_frames)
-
+    print('stored frames for video ', v)
 print('total images', len(col_images))
 
 # extracts vehicles from frames and stores in extracted_cars/
@@ -35,8 +35,11 @@ print('video1')
 veh_no = vh.detect(col_images[0], 1, 0)
 print('video2')
 veh_no = vh.detect(col_images[1], 2, veh_no)
+
+'''
 print('video3')
 veh_no = vh.detect(col_images[2], 3, veh_no)
+'''
 
 vc = vehicle_classification()
 vc.classify()

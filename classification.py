@@ -30,7 +30,7 @@ class vehicle_classification:
             img = cv2.imread(img)
 
             cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
-            ClassIndex, confidece, bbox = model.detect(img, confThreshold=0.3)
+            ClassIndex, confidece, bbox = model.detect(img, confThreshold=0.34)
 
             # index=ClassIndex
             # print(len(ClassIndex))
@@ -44,6 +44,12 @@ class vehicle_classification:
             if(count_arr[3] > 0):
                 print('Object is a car')
                 cv2.imwrite('output\CARS\Car_Image'+str(i)+'.jpg', img)
+            elif(count_arr[8] > 0):
+                print("It's a truck")
+                cv2.imwrite('output\TRUCK\Truck_Image'+str(i)+'.jpg', img)
+            elif(count_arr[6] > 0):
+                print("It's a bus")
+                cv2.imwrite('output\BUS\Bus_Image'+str(i)+'.jpg', img)
             elif(count_arr[2] > 0):
                 print("Object is a bicycle")
                 cv2.imwrite('output\BICYCLE\Bicycle_Image'+str(i)+'.jpg', img)
@@ -51,12 +57,6 @@ class vehicle_classification:
                 print("It's a motorbike")
                 cv2.imwrite('output\MOTORCYCLE\Motorcycle_Image' +
                             str(i)+'.jpg', img)
-            elif(count_arr[6] > 0):
-                print("It's a bus")
-                cv2.imwrite('output\BUS\Bus_Image'+str(i)+'.jpg', img)
-            elif(count_arr[8] > 0):
-                print("It's a truck")
-                cv2.imwrite('output\TRUCK\Truck_Image'+str(i)+'.jpg', img)
             else:
                 print('Object not identified')
                 cv2.imwrite('output\OTHERS\Image'+str(i)+'.jpg', img)

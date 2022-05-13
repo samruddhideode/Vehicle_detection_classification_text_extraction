@@ -1,5 +1,5 @@
 # Vehicle detection, Classification and number plate Text Extraction
-As a capstone project for 
+As a capstone project for PECE 3203 ( Image Processing Lab )
 By-<br>
 1 Samruddhi Deode <br>
 2 Arundhati Korlahalli <br>
